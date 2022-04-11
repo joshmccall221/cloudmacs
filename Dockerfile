@@ -1,4 +1,4 @@
-FROM silex/emacs:master-alpine AS emacs
+FROM silex/emacs:master-alpine-ci AS emacs
 # TODO 218 Mb. hmm wonder if building without GUI would help?
 
 ### configure locales for proper unicode display
@@ -22,7 +22,7 @@ RUN apk --no-cache add git cmake make musl-dev gcc gettext-dev libintl \
 # Unfortunately, it's got fixed alpine version and missing dependency so easiest was just to copy it
 RUN apk add --no-cache go git build-base && \
   mkdir -p /tmp/gotty && \
-  GOPATH=/tmp/gotty go get github.com/yudai/gotty && \
+  GOPATH=/tmp/gotty  go get github.com/sorenisanerd/gotty && \
   mv /tmp/gotty/bin/gotty /usr/local/bin/ && \
   apk del go git build-base && \
   rm -rf /tmp/gotty

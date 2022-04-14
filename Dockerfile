@@ -1,3 +1,4 @@
+## Borrowed from https://github.com/karlicoss/cloudmacs/compare/master...jkkor:master
 FROM silex/emacs:master-alpine-ci AS emacs
 # TODO 218 Mb. hmm wonder if building without GUI would help?
 
@@ -20,6 +21,7 @@ RUN apk --no-cache add git cmake make musl-dev gcc gettext-dev libintl \
 # TODO extract in a separate image?
 # based on https://github.com/dit4c/dockerfile-gotty
 # Unfortunately, it's got fixed alpine version and missing dependency so easiest was just to copy it
+# updated gotty : https://github.com/sorenisanerd/gotty
 RUN apk add --no-cache go git build-base && \
   mkdir -p /tmp/gotty && \
   GOPATH=/tmp/gotty  go get github.com/sorenisanerd/gotty && \
